@@ -1,0 +1,262 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Communication.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/sap/ZHMHA_I_SOH_TP_CDS/$metadata">
+        <edmx:Include Namespace="ZHMHA_I_SOH_TP_CDS" Alias="SAP"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="com.readians.hmh">
+            <Annotations Target="SAP.ZHMHA_I_SOH_TPType">
+                <!-- 리스트와 오브젝트 제목 설정 정보 -->
+                <Annotation Term="UI.HeaderInfo">
+                    <Record Type="UI.HeaderInfoType">
+                        <PropertyValue Property="TypeName" String="Productlist"/>
+                        <PropertyValue Property="TypeNamePlural" String="ProductItemList"/>
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="Salesorder"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <!--  -->
+                <Annotation Term="UI.HeaderFacets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#soh_hd_facet"/>
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#soh_hd_facet1"/>
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="miniChart"/>
+                            <PropertyValue Property="Target" AnnotationPath="to_SalesOrderItem2/@UI.Chart"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <!-- 리스트 오브젝트 필터 설정 -->
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>Salesorder</PropertyPath>
+                        <PropertyPath>Overallstatus</PropertyPath>
+                        <PropertyPath>Businesspartner</PropertyPath>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Salesorder"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Businesspartner"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Overallstatus"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Product"/>
+                            <PropertyValue Property="Value" Path="to_SalesOrderItem/product"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="ConvertedCurrency"/>
+                            <PropertyValue Property="Value" Path="to_SalesOrderItem/currencycode"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="ConvertedGrossAmount"/>
+                            <PropertyValue Property="Value" Path="to_SalesOrderItem/grossamount"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <!-- Line Action -->
+                        <Record Type="UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Copy2"/>
+                            <PropertyValue Property="Action"  
+                              String="ZHMHA_I_SOH_TP_CDS.ZHMHA_I_SOH_TP_CDS_Entities/ZHMHA_I_SOH_TPEdit"/>
+                            <PropertyValue Property="Inline" Bool="true"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>                
+                        <!-- footeraction -->
+                        <Record Type="UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Copy with new Supplier"/>
+                            <PropertyValue Property="Action"
+                              String="ZHMHA_I_SOH_TP_CDS.ZHMHA_I_SOH_TP_CDS_Entities/ZHMHA_I_SOH_TPActivation"/>
+                            <PropertyValue Property="InvocationGrouping"   
+                               EnumMember="UI.OperationGroupingType/Isolated"/>
+                         </Record>
+                         <Record Type="UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Copy"/>
+                            <PropertyValue Property="Action"
+                               String="ZHMHA_I_SOH_TP_CDS.ZHMHA_I_SOH_TP_CDS_Entities/ZHMHA_I_SOH_TPEdit"/>
+                            <PropertyValue Property="Determining" Bool="true"/>
+                            <PropertyValue Property="InvocationGrouping"   
+                               EnumMember="UI.OperationGroupingType/Isolated"/>
+                         </Record>
+                         <Record Type="UI.DataFieldForIntentBasedNavigation">
+                            <PropertyValue Property="Label" String="Manage Products (ST)"/>
+                            <PropertyValue Property="SemanticObject" String="EPMProduct"/>
+                            <PropertyValue Property="Action" String="manage_st"/>
+                            <PropertyValue Property="Determining" Bool="true"/>
+                         </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.Identification">
+                    <Collection>
+                        <Record Type="UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Break Up"/>
+                            <PropertyValue Property="Action" String="ZHMHA_I_SOH_TP_CDS.ZHMHA_I_SOH_TP_CDS_Entities/ZHMHA_I_SOH_TPEdit"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="SalesorderInfo"/>
+                            <PropertyValue Property="ID" String="soh_info01"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#soh_info"/>
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Company_info"/>
+                            <PropertyValue Property="ID" String="soh_co_info01"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#soh_info_company"/>
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="SOI_INFO"/>
+                            <PropertyValue Property="ID" String="INFO01"/>
+                            <PropertyValue Property="Target" AnnotationPath="to_SalesOrderItem2/@UI.LineItem#SOI_INFO"/>
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="SOI_CHART01"/>
+                            <PropertyValue Property="ID" String="CHART01"/>
+                            <PropertyValue Property="Target" AnnotationPath="to_SalesOrderItem2/@UI.Chart"/>
+                        </Record>                
+                    </Collection>  
+                </Annotation>
+                <Annotation Term="UI.DataPoint" Qualifier="soh_hd_facet">
+                    <Record Type="UI.DataPointType">
+                        <PropertyValue Property="Title" String="status"/>
+                        <PropertyValue Property="Value" Path="Overallstatus"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.DataPoint" Qualifier="soh_hd_facet1">
+                    <Record Type="UI.DataPointType">
+                        <PropertyValue Property="Title" String="Company"/>
+                        <PropertyValue Property="Value" Path="Businesspartner"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="soh_info">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="Salesorder"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="Overallstatus"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="Businesspartner"/>
+                                </Record>                           
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="soh_info_company">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="to_BusinessPartner/CompanyName"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="to_BusinessPartner/PhoneNumber"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="to_BusinessPartner/EmailAddress"/>
+                                </Record>                            
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.SelectionPresentationVariant" Qualifier="All">
+                    <Record Type="UI.SelectionPresentationVariantType">
+                        <PropertyValue Property="Text" String="ALL"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.SelectionVariant" Qualifier="Paid">
+                    <Record>
+                        <PropertyValue Property="Text" String="PAID"/>
+                        <PropertyValue Property="SelectOptions">
+                            <Collection>
+                                <Record Type="UI.SelectOptionType">
+                                    <PropertyValue Property="PropertyName" PropertyPath="Overallstatus"/>
+                                    <PropertyValue Property="Ranges">
+                                        <Collection>
+                                            <Record Type="UI.SelectionRangeType">
+                                                <PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/EQ"/>
+                                                <PropertyValue Property="Low" String="P"/>
+                                            </Record>
+                                        </Collection>
+                                    </PropertyValue>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP.ZHMHA_I_SOI_ITEMType">
+                <Annotation Term="UI.LineItem" Qualifier="SOI_INFO">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Product"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Quantity"/>
+                            <PropertyValue Property="Value" Path="Quantity"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Currencycode"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Grossamount"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ConvertedCurrency"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ConvertedGrossAmount"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.Chart">
+                    <Record Type="UI.ChartDefinitionType">
+                        <PropertyValue Property="Title" String="SOI_CHART"/>
+                        <PropertyValue Property="Description" String="CHART_DESC"/>
+                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Bar"/>
+                        <PropertyValue Property="Dimensions">
+                            <Collection>
+                                <PropertyPath>Product</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Measures">
+                            <Collection>
+                                <PropertyPath>Quantity</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

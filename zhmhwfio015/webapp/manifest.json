@@ -1,0 +1,203 @@
+{
+    "_version": "1.32.0",
+    "sap.app": {
+        "id": "com.readians.hmh.zhmhwfio015",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "tags": {
+            "keywords": []
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/sap/ZGW_HMH0020_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "ZGW_HMH0020_ANNO_MDL",
+                        "annotation"
+                    ],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "ZGW_HMH0020_ANNO_MDL": {
+                "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZGW_HMH0020_ANNO_MDL',Version='0001')/$value/",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "localService/ZGW_HMH0020_ANNO_MDL.xml"
+                }
+            },
+            "annotation": {
+                "type": "ODataAnnotation",
+                "uri": "annotations/annotation.xml",
+                "settings": {
+                    "localUri": "annotations/annotation.xml"
+                }
+            }
+        },
+        "offline": false,
+        "sourceTemplate": {
+            "id": "OVP.smartovptemplate",
+            "version": "1.41.1"
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        },
+        "supportedThemes": [
+            "sap_hcb",
+            "sap_belize"
+        ]
+    },
+    "sap.ui5": {
+        "resources": {
+            "js": [],
+            "css": []
+        },
+        "dependencies": {
+            "minUI5Version": "1.65.0",
+            "libs": {
+                "sap.ovp": {}
+            },
+            "components": {}
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties",
+                "preload": false
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
+            "mainService": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "defaultCountMode": "Inline"
+                }
+            }
+        },
+        "extends": {
+            "extensions": {}
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        }
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "analytical"
+    },
+    "sap.ovp": {
+        "globalFilterModel": "mainService",
+        "globalFilterEntityType": "ZHMH_C_FILTERType",
+        "containerLayout": "resizable",
+        "enableLiveFilter": true,
+        "considerAnalyticalParameters": false,
+        "cards": {
+            "cid_soilist": {
+                "model": "mainService",
+                "template": "sap.ovp.cards.list",
+                "settings": {
+                    "title": "SalesOrderList",
+                    "entitySet": "Z_C_ALP_SalesOrderItem",
+                    "listType": "extended",
+                    "listFlavor": "standard",
+                    "annotationPath": "com.sap.vocabularies.UI.v1.LineItem#qua_soilist"
+                }
+            },
+            "cid_soi_stack": {
+                "model": "mainService",
+                "template": "sap.ovp.cards.stack",
+                "settings": {
+                    "title": "SalesOrderItem",
+                    "entitySet": "Z_C_ALP_SalesOrderItem"
+                }
+            },
+            "cid_sohlist": {
+                "model": "mainService",
+                "template": "sap.ovp.cards.table",
+                "settings": {
+                    "title": "SalesOrderH",
+                    "entitySet": "Z_C_ALP_SalesOrder",
+                    "annotationPath": "com.sap.vocabularies.UI.v1.LineItem#qua_sohlist01"
+                }
+            },
+            "cid_char01": {
+                "model": "mainService",
+                "template": "sap.ovp.cards.charts.analytical",
+                "settings": {
+                    "title": "SalesOrderitemChart",
+                    "entitySet": "Z_C_ALP_SalesOrderItem",
+                    "subTitle": "SalesOrderitemChart01",
+                    "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#qua_chart01"
+                }
+            },
+            "cid_salesOrderindenti": {
+                "model": "mainService",
+                "template": "sap.ovp.cards.table",
+                "settings": {
+                    "title": "TEST03",
+                    "entitySet": "Z_C_ALP_SalesOrderItem",
+                    "tabs": [
+                        {
+                            "annotationPath": "com.sap.vocabularies.UI.v1.LineItem#qua_soiqulity02",
+                            "selectionAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#qua_selection01",
+                            "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#qua_soiqulity",
+                            "identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification#uqa_indetification01",
+                            "value": "qua_soiqulity02"
+                        },
+                        {
+                            "annotationPath": "com.sap.vocabularies.UI.v1.LineItem#qua_soiqulity03",
+                            "value": "qua_soiqulity03"
+                        }
+                    ]
+                }
+            },
+            "cid_SalesOrderSelection01": {
+                "model": "mainService",
+                "template": "sap.ovp.cards.table",
+                "settings": {
+                    "title": "titile_SalesOrderSelection01",
+                    "entitySet": "Z_C_ALP_SalesOrder",
+                    "tabs": [
+                        {
+                            "annotationPath": "com.sap.vocabularies.UI.v1.LineItem#qua_salesordertab",
+                            "value": "salesordertab"
+                        },
+                        {
+                            "annotationPath": "com.sap.vocabularies.UI.v1.LineItem#qua_sohlist01",
+                            "value": "list"
+                        }
+                    ]
+                }
+            }
+        },
+        "chartSettings": {
+            "showDataLabel": true
+        }
+    },
+    "sap.ui.generic.app": {
+        "settings": {}
+    }
+}

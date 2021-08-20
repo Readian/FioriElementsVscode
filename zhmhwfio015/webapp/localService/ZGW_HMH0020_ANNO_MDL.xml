@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="../../../sap/zgw_hmh0020_srv/$metadata">
+        <edmx:Include Namespace="ZGW_HMH0020_SRV" Alias="SAP"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="zgw_hmh0020_anno_mdl.v1" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <Annotations Target="ZGW_HMH0020_SRV.ZHMH_C_FILTERType/SalesOrder">
+                <Annotation Term="Common.SemanticObject" String="EPMSalesOrder"/>
+            </Annotations>
+            <Annotations Target="ZGW_HMH0020_SRV.ZHMH_C_FILTERType">
+                <Annotation Term="UI.QuickViewFacets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#QuickView"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.FilterFacets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Details"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="Details">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataFieldWithIntentBasedNavigation">
+                                    <PropertyValue Property="SemanticObject" String="EPMSalesOrder"/>
+                                    <PropertyValue Property="Action" String="manage_st"/>
+                                    <PropertyValue Property="Value" Path="SalesOrder"/>
+                                    <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="QuickView">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="SalesOrder"/>
+                                    <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Identification">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="SalesOrder"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZGW_HMH0020_SRV.Z_C_ALP_SalesOrderType/SalesOrder">
+                <Annotation Term="Common.SemanticObject" String="EPMSalesOrder"/>
+            </Annotations>
+            <Annotations Target="ZGW_HMH0020_SRV.Z_C_ALP_SalesOrderType/SalesOrderOverallStatus">
+                <Annotation Term="Common.Text" Path="SalesOrderOverallStatus_T">
+                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZGW_HMH0020_SRV.Z_C_ALP_SalesOrderType">
+                <Annotation Term="UI.QuickViewFacets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#QuickView"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.FilterFacets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Details"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="AdminData">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="CreationDateTime"/>
+                                    <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+                                </Record>
+                                <Record Type="UI.DataFieldForAnnotation">
+                                    <PropertyValue Property="Label" String="Created By"/>
+                                    <PropertyValue Property="Target" String="">
+                                        <Annotation Term="Core.Messages">
+                                            <Collection>
+                                                <Record>
+                                                    <PropertyValue Property="code" String="SADL_GW_EXP_VOCAN-000"/>
+                                                    <PropertyValue Property="message" String="Navigation property '_CreatedByUser' of annotation 'UI.FIELDGROUP$1$' in proj./view 'Z_C_ALP_SalesOrder' not found"/>
+                                                    <PropertyValue Property="severity" String="error"/>
+                                                </Record>
+                                            </Collection>
+                                        </Annotation>
+                                    </PropertyValue>
+                                    <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="LastChangedDateTime"/>
+                                    <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+                                </Record>
+                                <Record Type="UI.DataFieldForAnnotation">
+                                    <PropertyValue Property="Label" String="Last Changed By"/>
+                                    <PropertyValue Property="Target" String="">
+                                        <Annotation Term="Core.Messages">
+                                            <Collection>
+                                                <Record>
+                                                    <PropertyValue Property="code" String="SADL_GW_EXP_VOCAN-000"/>
+                                                    <PropertyValue Property="message" String="Navigation property '_LastChangedByUser' of annotation 'UI.FIELDGROUP$1$' in proj./view 'Z_C_ALP_SalesOrder' not found"/>
+                                                    <PropertyValue Property="severity" String="error"/>
+                                                </Record>
+                                            </Collection>
+                                        </Annotation>
+                                    </PropertyValue>
+                                    <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="Details">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataFieldWithIntentBasedNavigation">
+                                    <PropertyValue Property="SemanticObject" String="EPMSalesOrder"/>
+                                    <PropertyValue Property="Action" String="manage_st"/>
+                                    <PropertyValue Property="Value" Path="SalesOrder"/>
+                                    <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                                </Record>
+                                <Record Type="UI.DataFieldForAnnotation">
+                                    <PropertyValue Property="Label" String="Customer"/>
+                                    <PropertyValue Property="Target" String="">
+                                        <Annotation Term="Core.Messages">
+                                            <Collection>
+                                                <Record>
+                                                    <PropertyValue Property="code" String="SADL_GW_EXP_VOCAN-000"/>
+                                                    <PropertyValue Property="message" String="Navigation property '_Customer' of annotation 'UI.FIELDGROUP$1$' in proj./view 'Z_C_ALP_SalesOrder' not found"/>
+                                                    <PropertyValue Property="severity" String="error"/>
+                                                </Record>
+                                            </Collection>
+                                        </Annotation>
+                                    </PropertyValue>
+                                    <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="NetAmountInTransactionCurrency"/>
+                                    <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="SalesOrderOverallStatus"/>
+                                    <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="QuickView">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="SalesOrder"/>
+                                    <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="Customer"/>
+                                    <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="NetAmountInTransactionCurrency"/>
+                                    <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Identification">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="SalesOrder"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZGW_HMH0020_SRV.Z_C_ALP_SalesOrderItemType/Product">
+                <Annotation Term="Common.SemanticObject" String="EPMProduct"/>
+            </Annotations>
+            <Annotations Target="ZGW_HMH0020_SRV.Z_C_ALP_SalesOrderItemType">
+                <Annotation Term="UI.DataPoint" Qualifier="DeliveryDate">
+                    <Record>
+                        <PropertyValue Property="Value" Path="DeliveryDate"/>
+                        <PropertyValue Property="Title" String="Delivery Date"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.DataPoint" Qualifier="NetAmountInTransactionCurrency">
+                    <Record>
+                        <PropertyValue Property="Value" Path="NetAmountInTransactionCurrency"/>
+                        <PropertyValue Property="Title" String="Total Net Amount"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.DataPoint" Qualifier="Quantity">
+                    <Record>
+                        <PropertyValue Property="Value" Path="Quantity"/>
+                        <PropertyValue Property="Title" String="Quantity"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="Details">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="Quantity"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="NetAmountInTransactionCurrency"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="DeliveryDate"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="Product"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Label" String="Sales Order Item Details"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

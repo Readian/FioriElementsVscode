@@ -17,7 +17,7 @@
                     </Collection>
                 </Annotation>
                 <Annotation Term="UI.LineItem">
-                    <Collection>                        
+                    <Collection>              
                         <Record Type="UI.DataField">
                             <PropertyValue Property="Value" Path="Name"/>
                             <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>

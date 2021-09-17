@@ -18,10 +18,16 @@
                 <Annotation Term="UI.HeaderInfo">
                     <Record Type="UI.HeaderInfoType">
                         <PropertyValue Property="TypeName" String="Productlist"/>
-                        <PropertyValue Property="TypeNamePlural" String="ProductItemList"/>
+                        <PropertyValue Property="TypeNamePlural" String="ProductItemLists"/>
                         <PropertyValue Property="Title">
                             <Record Type="UI.DataField">
                                 <PropertyValue Property="Value" Path="Salesorder"/>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="Description">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="Businesspartner" />
+
                             </Record>
                         </PropertyValue>
                     </Record>
@@ -119,6 +125,7 @@
                         </Record>
                     </Collection>
                 </Annotation>
+                <!--  -->
                 <Annotation Term="UI.Facets">
                     <Collection>
                         <Record Type="UI.ReferenceFacet">

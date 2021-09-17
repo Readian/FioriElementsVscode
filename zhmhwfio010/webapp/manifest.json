@@ -1,7 +1,7 @@
 {
     "_version": "1.32.0",
     "sap.app": {
-        "id": "com.readians.hmh.zhmhwfio008",
+        "id": "com.readians.hmh.zhmhwfio010",
         "type": "application",
         "i18n": "i18n/i18n.properties",
         "applicationVersion": {
@@ -12,24 +12,24 @@
         "tags": {
             "keywords": []
         },
-        "resources": "resources.json",
         "dataSources": {
             "mainService": {
-                "uri": "/sap/opu/odata/sap/ZHMHB_I_SOH_CDS/",
+                "uri": "/sap/opu/odata/sap/ZHMHG_I_PURODR_CDS/",
                 "type": "OData",
                 "settings": {
                     "annotations": [
-                        "ZHMHB_I_SOH_CDS_VAN",
+                        "ZHMHG_I_PURODR_CDS_VAN",
                         "annotation"
                     ],
-                    "localUri": "localService/metadata.xml"
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
                 }
             },
-            "ZHMHB_I_SOH_CDS_VAN": {
-                "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZHMHB_I_SOH_CDS_VAN',Version='0001')/$value/",
+            "ZHMHG_I_PURODR_CDS_VAN": {
+                "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZHMHG_I_PURODR_CDS_VAN',Version='0001')/$value/",
                 "type": "ODataAnnotation",
                 "settings": {
-                    "localUri": "localService/ZHMHB_I_SOH_CDS_VAN.xml"
+                    "localUri": "localService/ZHMHG_I_PURODR_CDS_VAN.xml"
                 }
             },
             "annotation": {
@@ -63,8 +63,7 @@
         },
         "supportedThemes": [
             "sap_hcb",
-            "sap_belize",
-            "sap_fiori_3"
+            "sap_belize"
         ]
     },
     "sap.ui5": {
@@ -73,7 +72,7 @@
             "css": []
         },
         "dependencies": {
-            "minUI5Version": "1.65.0",
+            "minUI5Version": "1.94.0",
             "libs": {
                 "sap.ui.core": {
                     "lazy": false
@@ -90,20 +89,22 @@
         "models": {
             "i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",
-                "uri": "i18n/i18n.properties"
+                "uri": "i18n/i18n.properties",
+                "preload": false
             },
             "@i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",
                 "uri": "i18n/i18n.properties"
             },
-            "i18n|sap.suite.ui.generic.template.ListReport|ZHMHB_I_SOH": {
+            "i18n|sap.suite.ui.generic.template.ListReport|ZHMHG_I_PurOdr": {
                 "type": "sap.ui.model.resource.ResourceModel",
-                "uri": "i18n/ListReport/ZHMHB_I_SOH/i18n.properties"
+                "uri": "i18n/ListReport/ZHMHG_I_PurOdr/i18n.properties"
             },
-            "i18n|sap.suite.ui.generic.template.ObjectPage|ZHMHB_I_SOH": {
+            "i18n|sap.suite.ui.generic.template.ObjectPage|ZHMHG_I_PurOdr": {
                 "type": "sap.ui.model.resource.ResourceModel",
-                "uri": "i18n/ObjectPage/ZHMHB_I_SOH/i18n.properties"
+                "uri": "i18n/ObjectPage/ZHMHG_I_PurOdr/i18n.properties"
             },
+            
             "": {
                 "dataSource": "mainService",
                 "preload": true,
@@ -118,12 +119,7 @@
             }
         },
         "extends": {
-            "extensions": {
-                "sap.ui.viewExtensions": {
-                    "sap.suite.ui.generic.template.ListReport.view.ListReport": {},
-                    "sap.suite.ui.generic.template.ObjectPage.view.Details": {}
-                }
-            }
+            "extensions": {}
         },
         "contentDensities": {
             "compact": true,
@@ -136,37 +132,34 @@
             "forceGlobalRefresh": false,
             "objectPageHeaderType": "Dynamic",
             "considerAnalyticalParameters": true,
-            "showDraftToggle": true
+            "showDraftToggle": false
         },
         "pages": {
-            "ListReport|ZHMHB_I_SOH": {
-                "entitySet": "ZHMHB_I_SOH",
+            "AnalyticalListPage|ZHMHG_I_PurOdr": {
+                "entitySet": "ZHMHG_I_PurOdr",
                 "component": {
-                    "name": "sap.suite.ui.generic.template.ListReport",
+                    "name": "sap.suite.ui.generic.template.AnalyticalListPage",
                     "list": true,
                     "settings": {
                         "condensedTableLayout": true,
-                        "smartVariantManagement": true,
-                        "enableTableFilterInPageVariant": true,
-                        "filterSettings": {
-                            "dateSettings": {
-                                "useDateRange": true
-                            }
-                        },
+                        "showGoButtonOnFilterBar": true,
+                        "tableType": "AnalyticalTable",
+                        "autoHide": false,
+                        "smartVariantManagement": false,
                         "tableSettings": {
-                            "selectAll": true,
-                            "multiSelect": true,
-                            "type": "ResponsiveTable"
-                        }
+                            "multiSelect": false
+                        },
+                        "keyPerformanceIndicators": {}
                     }
                 },
                 "pages": {
-                    "ObjectPage|ZHMHB_I_SOH": {
-                        "entitySet": "ZHMHB_I_SOH",
+                    "ObjectPage|ZHMHG_I_PurOdr": {
+                        "entitySet": "ZHMHG_I_PurOdr",
                         "defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
                         "component": {
                             "name": "sap.suite.ui.generic.template.ObjectPage"
                         }
+                        
                     }
                 }
             }

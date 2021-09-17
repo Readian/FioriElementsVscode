@@ -24,8 +24,20 @@
                                     <PropertyValue Property="Label" String="Product"/>
                                 </Record>
                                 <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="QuantityUnit"/>
+                                    <PropertyValue Property="Label" String="QuantityUnit"/>
+                                </Record>
+                                <Record Type="UI.DataField">
                                     <PropertyValue Property="Value" Path="Quantity"/>
                                     <PropertyValue Property="Label" String="Quantity"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="TransactionCurrency"/>
+                                    <PropertyValue Property="Label" String="TransactionCurrency"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="NetAmountInTransactionCurrency"/>
+                                    <PropertyValue Property="Label" String="NetAmountInTransactionCurrency"/>
                                 </Record>
                             </Collection>
                         </PropertyValue>
@@ -34,9 +46,9 @@
                 <Annotation Term="UI.Facets" >
                     <Collection>
                         <Record Type="UI.ReferenceFacet">
-                            <Annotation Term="UI.IsSummary"/>
-                            <PropertyValue Property="Target" AnnotationPath="@UI.LineItem#qua_soilist"/>
-                            <PropertyValue Property="Label" String="Generalinfomation"/>
+                            <Annotation Term="UI.IsSummary" ></Annotation>
+                            <PropertyValue Property="Label" String="QuickViewFacets"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Generalinfo"/>
                         </Record>
                     </Collection>
                 </Annotation>
@@ -54,7 +66,7 @@
                         <Record Type="UI.DataField">
                             <PropertyValue Property="Value" Path="Product"/>
                             <PropertyValue Property="Label" String="Product Name"/>
-                        </Record>                     
+                        </Record>                                         
                     </PropertyValue>
                     <PropertyValue Property="ImageUrl" String="sap-icon://order-status"/>
                 </Record>

@@ -18,6 +18,7 @@
                 "uri": "/sap/opu/odata/sap/ZHMHB_I_SOH_CDS/",
                 "type": "OData",
                 "settings": {
+                    "odataVersion": "2.0",
                     "annotations": [
                         "ZHMHB_I_SOH_CDS_VAN",
                         "annotation"
@@ -115,6 +116,13 @@
                         "sap-value-list": "none"
                     }
                 }
+            },
+            "mainService": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "defaultCountMode": "Inline"
+                }
             }
         },
         "extends": {
@@ -166,6 +174,22 @@
                         "defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
                         "component": {
                             "name": "sap.suite.ui.generic.template.ObjectPage"
+                        },
+                        "pages": {
+                            "ObjectPage|SEPM_C_RAMP_Supplier": {
+                                "component": {
+                                    "name": "sap.suite.ui.generic.template.ObjectPage"
+                                },
+                                "entitySet": "SEPM_C_RAMP_Supplier",
+                                "navigationProperty": "to_Supplier"
+                            },
+                            "ObjectPage|ZHMHB_I_POD_REVIEW": {
+                                "component": {
+                                    "name": "sap.suite.ui.generic.template.ObjectPage"
+                                },
+                                "entitySet": "ZHMHB_I_POD_REVIEW",
+                                "navigationProperty": "to_ProductReview"
+                            }
                         }
                     }
                 }

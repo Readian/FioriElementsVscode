@@ -5,10 +5,10 @@
     visibleInAdvancedArea="true">
     <smartfilterbar:customControl>
         <ComboBox id="Cont_test01">
-        <core:Item key="0" text="Item1"/>
-        <core:Item key="1" text="Item2"/>
-        <core:Item key="2" text="Item3"/>
-    </ComboBox>
+            <core:Item key="0" text="Item1"/>
+            <core:Item key="1" text="Item2"/>
+            <core:Item key="2" text="Item3"/>
+        </ComboBox>
     </smartfilterbar:customControl>
 </smartfilterbar:ControlConfiguration>
 </core:FragmentDefinition>

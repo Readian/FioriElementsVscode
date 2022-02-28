@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="http://linux.grcplace.com:8020/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://linux.grcplace.com:8020/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://linux.grcplace.com:8020/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://linux.grcplace.com:8020/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://linux.grcplace.com:8020/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZGW_HMH0070_SRV" xml:lang="ko" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="ZHMHG_I_EmployeeType" sap:label="Purchase Order Employee" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Employee"/>
+                </Key>
+                <Property Name="Employee" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:text="FullName" sap:label="Employee" sap:quickinfo="Employee ID" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="EmployeePictureURL" Type="Edm.String" MaxLength="255" sap:label="Pic URI" sap:quickinfo="EPM: URL of Product Image"/>
+                <Property Name="FirstName" Type="Edm.String" MaxLength="40" sap:label="First Name" sap:quickinfo="EPM: First Name"/>
+                <Property Name="MiddleName" Type="Edm.String" MaxLength="40" sap:label="Middle Name" sap:quickinfo="EPM: Middle Name"/>
+                <Property Name="LastName" Type="Edm.String" MaxLength="40" sap:label="Last Name" sap:quickinfo="EPM: Last Name"/>
+                <Property Name="FullName" Type="Edm.String" MaxLength="81" sap:label="Name" sap:quickinfo="Full Name"/>
+                <Property Name="Initials" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Initials" sap:quickinfo="EPM: Initials"/>
+                <Property Name="GenderCode" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Gender" sap:quickinfo="EPM: Gender"/>
+                <Property Name="PhoneNumber" Type="Edm.String" MaxLength="30" sap:label="Phone" sap:quickinfo="EPM: Phone Number" sap:semantics="tel"/>
+                <Property Name="MobilePhoneNumber" Type="Edm.String" MaxLength="30" sap:label="Mobile Phone Number" sap:quickinfo="EPM: Mobile Phone Number" sap:semantics="tel"/>
+                <Property Name="EmailAddress" Type="Edm.String" MaxLength="255" sap:label="Email" sap:quickinfo="EPM: E-Mail Address" sap:semantics="email"/>
+            </EntityType>
+            <EntityType Name="ZHMHG_I_PurOdrType" sap:semantics="aggregate" sap:label="Purchase Order" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" Nullable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PurchaseOrder" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:display-format="UpperCase" sap:label="Purchase Order" sap:quickinfo="Purchase Order ID" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Supplier" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:display-format="UpperCase" sap:label="Supplier" sap:quickinfo="Supplier ID"/>
+                <Property Name="LastChangedDate" Type="Edm.DateTime" Precision="0" sap:aggregation-role="dimension" sap:display-format="Date" sap:label="Last Changed" sap:quickinfo="Last Changed (Date)"/>
+                <Property Name="NetAmount" Type="Edm.Decimal" Precision="16" Scale="3" sap:aggregation-role="measure" sap:unit="Currency" sap:label="Net Amount" sap:quickinfo="EPM: Total Net Amount" sap:filterable="false"/>
+                <Property Name="Currency" Type="Edm.String" MaxLength="5" sap:aggregation-role="dimension" sap:label="Currency" sap:semantics="currency-code"/>
+                <Property Name="EarliestDeliveryDate" Type="Edm.DateTime" Precision="0" sap:aggregation-role="dimension" sap:display-format="Date" sap:label="Earliest Delivery Date"/>
+                <Property Name="LatestDeliveryDate" Type="Edm.DateTime" Precision="0" sap:aggregation-role="dimension" sap:display-format="Date" sap:label="Latest Delivery Date"/>
+                <Property Name="NumberOfItems" Type="Edm.Int32" sap:aggregation-role="dimension" sap:label="Number of Items"/>
+                <Property Name="Requestor" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:display-format="UpperCase" sap:label="Employee" sap:quickinfo="Employee ID" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="DeliveryAddress" Type="Edm.String" MaxLength="176" sap:aggregation-role="dimension" sap:label="Delivery Address" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="CompanyName" Type="Edm.String" MaxLength="80" sap:label="Company" sap:quickinfo="EPM: Company Name"/>
+                <Property Name="SupplierApprovalStatus" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:display-format="UpperCase" sap:label="Approval Status" sap:quickinfo="EPM: Business Partner Approval Status"/>
+                <Property Name="EmailAddress" Type="Edm.String" MaxLength="255" sap:aggregation-role="dimension" sap:label="Email" sap:quickinfo="EPM: E-Mail Address" sap:semantics="email"/>
+                <Property Name="PhoneNumber" Type="Edm.String" MaxLength="30" sap:aggregation-role="dimension" sap:label="Phone" sap:quickinfo="EPM: Phone Number" sap:semantics="tel"/>
+            </EntityType>
+            <EntityType Name="ZHMHG_I_PurOrdItemType" sap:semantics="aggregate" sap:label="Purchase Order Item" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" Nullable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PurchaseOrder" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:display-format="UpperCase" sap:label="Purchase Order" sap:quickinfo="Purchase Order ID" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="PurchaseOrderItem" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:display-format="UpperCase" sap:label="Item" sap:quickinfo="Purchase Order Item Position" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="NetAmount" Type="Edm.Decimal" Precision="16" Scale="3" sap:aggregation-role="measure" sap:unit="Currency" sap:label="Net Amount" sap:quickinfo="EPM: Total Net Amount" sap:filterable="false"/>
+                <Property Name="Currency" Type="Edm.String" MaxLength="5" sap:aggregation-role="dimension" sap:label="Currency" sap:semantics="currency-code"/>
+                <Property Name="Quantity" Type="Edm.Int32" sap:aggregation-role="measure" sap:unit="QuantityUnit" sap:label="Quantity" sap:quickinfo="Quantity, rounded to the next whole number" sap:filterable="false"/>
+                <Property Name="QuantityUnit" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="Quantity Unit" sap:creatable="false" sap:updatable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="DeliveryDate" Type="Edm.DateTime" Precision="0" sap:aggregation-role="dimension" sap:display-format="Date" sap:label="Delivery Date"/>
+                <Property Name="Product" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="Product" sap:quickinfo="Product ID"/>
+            </EntityType>
+            <EntityType Name="ZHMHG_I_SUPPLIERType" sap:label="Purchase Order SUPPLIER" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SupplierUUID"/>
+                </Key>
+                <Property Name="SupplierUUID" Type="Edm.Guid" Nullable="false" sap:label="Busi. Partner UUID" sap:quickinfo="EPM: Business Partner Key"/>
+                <Property Name="Supplier" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:text="CompanyName" sap:label="Business Partner ID" sap:quickinfo="EPM: Business Partner ID" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Currency" Type="Edm.String" MaxLength="5" sap:label="Currency Code" sap:quickinfo="EPM: Currency Code" sap:semantics="currency-code"/>
+                <Property Name="CompanyName" Type="Edm.String" MaxLength="80" sap:label="Company" sap:quickinfo="EPM: Company Name"/>
+                <Property Name="LegalForm" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Legal Form" sap:quickinfo="EPM: Legal Form of Business Partner"/>
+                <Property Name="AddressUUID" Type="Edm.Guid" sap:label="Node Key" sap:quickinfo="EPM: Generic Node Key"/>
+                <Property Name="EmailAddress" Type="Edm.String" MaxLength="255" sap:label="Email" sap:quickinfo="EPM: E-Mail Address" sap:semantics="email"/>
+                <Property Name="FaxNumber" Type="Edm.String" MaxLength="30" sap:label="Fax" sap:quickinfo="EPM: Fax Number" sap:semantics="tel"/>
+                <Property Name="PhoneNumber" Type="Edm.String" MaxLength="30" sap:label="Phone" sap:quickinfo="EPM: Phone Number" sap:semantics="tel"/>
+                <Property Name="URL" Type="Edm.String" sap:label="URI" sap:quickinfo="EPM: Web Address"/>
+                <Property Name="SupplierApprovalStatus" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Approval Status" sap:quickinfo="EPM: Business Partner Approval Status"/>
+                <Property Name="CreatedByUser" Type="Edm.Guid" sap:label="Node Key" sap:quickinfo="EPM: Generic Node Key" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="CreationDateTime" Type="Edm.DateTimeOffset" Precision="7" sap:label="Created At" sap:quickinfo="EPM: Created At" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="LastChangedByUser" Type="Edm.Guid" sap:label="Node Key" sap:quickinfo="EPM: Generic Node Key" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="LastChangedDateTime" Type="Edm.DateTimeOffset" Precision="7" sap:label="Changed At" sap:quickinfo="EPM: Changed At" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityType Name="ZHMHG_POAPV_AnalyticsType" sap:semantics="aggregate" sap:label="Purchase Order Analytics" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" Nullable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PurchaseOrder" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:display-format="UpperCase" sap:label="Purchase Order" sap:quickinfo="Purchase Order ID" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Supplier" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:display-format="UpperCase" sap:text="SupplierT" sap:label="Supplier" sap:quickinfo="Supplier ID"/>
+                <Property Name="SupplierT" Type="Edm.String" MaxLength="80" sap:attribute-for="Supplier" sap:display-format="UpperCase" sap:label="Supplier Name"/>
+                <Property Name="Requestor" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:display-format="UpperCase" sap:text="RequestorT" sap:label="Requested by" sap:quickinfo="Requestor" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="RequestorT" Type="Edm.String" MaxLength="81" sap:attribute-for="Requestor" sap:label="Name" sap:quickinfo="Full Name"/>
+                <Property Name="Currency" Type="Edm.String" MaxLength="5" sap:aggregation-role="dimension" sap:text="CurrencyT" sap:label="Currency" sap:semantics="currency-code"/>
+                <Property Name="CurrencyT" Type="Edm.String" MaxLength="15" sap:attribute-for="Currency" sap:label="내역"/>
+                <Property Name="NumberOfItems" Type="Edm.Int32" sap:aggregation-role="measure" sap:label="Number of Items" sap:filterable="false"/>
+                <Property Name="NetAmount" Type="Edm.Decimal" Precision="16" Scale="3" sap:aggregation-role="measure" sap:unit="Currency" sap:label="Net Amount" sap:quickinfo="EPM: Total Net Amount" sap:filterable="false"/>
+                <Property Name="EarliestDeliveryDate" Type="Edm.DateTime" Precision="0" sap:aggregation-role="measure" sap:display-format="Date" sap:label="Earliest Delivery Date" sap:filterable="false"/>
+                <Property Name="LatestDeliveryDate" Type="Edm.DateTime" Precision="0" sap:aggregation-role="measure" sap:display-format="Date" sap:label="Latest Delivery Date" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ZHMHG_POAPV_PurOrdItemType" sap:semantics="aggregate" sap:label="Purchase Order ItemT" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" Nullable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PurchaseOrder" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:display-format="UpperCase" sap:label="Purchase Order" sap:quickinfo="Purchase Order ID" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="PurchaseOrderItem" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:display-format="UpperCase" sap:label="Item" sap:quickinfo="Purchase Order Item Position" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="NetAmount" Type="Edm.Decimal" Precision="16" Scale="3" sap:aggregation-role="measure" sap:unit="Currency" sap:label="Net Amount" sap:quickinfo="EPM: Total Net Amount" sap:filterable="false"/>
+                <Property Name="Currency" Type="Edm.String" MaxLength="5" sap:aggregation-role="dimension" sap:label="Currency" sap:semantics="currency-code"/>
+                <Property Name="Quantity" Type="Edm.Int32" sap:aggregation-role="measure" sap:unit="QuantityUnit" sap:label="Quantity" sap:quickinfo="Quantity, rounded to the next whole number" sap:filterable="false"/>
+                <Property Name="QuantityUnit" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:label="Quantity Unit" sap:creatable="false" sap:updatable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="DeliveryDate" Type="Edm.DateTime" Precision="0" sap:aggregation-role="dimension" sap:display-format="Date" sap:label="Delivery Date"/>
+                <Property Name="Product" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:label="Product" sap:quickinfo="Product ID"/>
+            </EntityType>
+            <EntityContainer Name="ZGW_HMH0070_SRV_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ZHMHG_I_Employee" EntityType="ZGW_HMH0070_SRV.ZHMHG_I_EmployeeType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZHMHG_I_PurOdr" EntityType="ZGW_HMH0070_SRV.ZHMHG_I_PurOdrType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZHMHG_I_PurOrdItem" EntityType="ZGW_HMH0070_SRV.ZHMHG_I_PurOrdItemType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZHMHG_I_SUPPLIER" EntityType="ZGW_HMH0070_SRV.ZHMHG_I_SUPPLIERType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZHMHG_POAPV_Analytics" EntityType="ZGW_HMH0070_SRV.ZHMHG_POAPV_AnalyticsType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZHMHG_POAPV_PurOrdItem" EntityType="ZGW_HMH0070_SRV.ZHMHG_POAPV_PurOrdItemType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <Annotations Target="ZGW_HMH0070_SRV.ZGW_HMH0070_SRV_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Aggregation.ApplySupported">
+                    <Record>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Rollup" EnumMember="None"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZGW_HMH0070_SRV.ZHMHG_I_PurOdrType/Supplier" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="ZGW_HMH0070_SRV.ZHMHG_I_PurOrdItemType/Product" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="ZGW_HMH0070_SRV.ZHMHG_I_PurOrdItemType/Quantity" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="ZGW_HMH0070_SRV.ZHMHG_POAPV_AnalyticsType/Supplier" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="ZGW_HMH0070_SRV.ZHMHG_POAPV_PurOrdItemType/Product" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="ZGW_HMH0070_SRV.ZHMHG_POAPV_PurOrdItemType/Quantity" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="ZGW_HMH0070_SRV.ZGW_HMH0070_SRV_Entities/ZHMHG_I_PurOdr" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonFilterableProperties">
+                            <Collection>
+                                <PropertyPath>ID</PropertyPath>
+                                <PropertyPath>NetAmount</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>ID</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZGW_HMH0070_SRV.ZGW_HMH0070_SRV_Entities/ZHMHG_I_PurOrdItem" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonFilterableProperties">
+                            <Collection>
+                                <PropertyPath>ID</PropertyPath>
+                                <PropertyPath>NetAmount</PropertyPath>
+                                <PropertyPath>Quantity</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>ID</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZGW_HMH0070_SRV.ZGW_HMH0070_SRV_Entities/ZHMHG_I_SUPPLIER" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="URL"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>URL</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZGW_HMH0070_SRV.ZGW_HMH0070_SRV_Entities/ZHMHG_POAPV_Analytics" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonFilterableProperties">
+                            <Collection>
+                                <PropertyPath>ID</PropertyPath>
+                                <PropertyPath>NumberOfItems</PropertyPath>
+                                <PropertyPath>NetAmount</PropertyPath>
+                                <PropertyPath>EarliestDeliveryDate</PropertyPath>
+                                <PropertyPath>LatestDeliveryDate</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>ID</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZGW_HMH0070_SRV.ZGW_HMH0070_SRV_Entities/ZHMHG_POAPV_PurOrdItem" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonFilterableProperties">
+                            <Collection>
+                                <PropertyPath>ID</PropertyPath>
+                                <PropertyPath>NetAmount</PropertyPath>
+                                <PropertyPath>Quantity</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>ID</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="http://linux.grcplace.com:8020/sap/opu/odata/sap/ZGW_HMH0070_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://linux.grcplace.com:8020/sap/opu/odata/sap/ZGW_HMH0070_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

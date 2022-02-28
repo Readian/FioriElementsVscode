@@ -251,6 +251,18 @@
                         <PropertyValue Property="Title" String="SOI_CHART"/>
                         <PropertyValue Property="Description" String="CHART_DESC"/>
                         <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Bar"/>
+                        <PropertyValue Property="DimensionAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartDimensionAttributeType">
+                                    <PropertyValue Property="Dimension" PropertyPath="Product"/>
+                                    <PropertyValue Property="EmphasisLabels">
+                                        <Record Type="UI.EmphasisLabelType">
+                                            <PropertyValue Property="EmphasizedValuesLabel" String="QWEWQASD"/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
                         <PropertyValue Property="Dimensions">
                             <Collection>
                                 <PropertyPath>Product</PropertyPath>

@@ -40,12 +40,12 @@ sap.ui.define(
                     if (oCustomControl instanceof ComboBox) {
                         var vCategory = oCustomControl.getSelectedKey();
                         switch (vCategory) {
-                            // case "0" :
-                            // 	oBindingParams.filters.push(new Filter("Supplier", "EQ", "SAP"));
-                            // 	break;
-                            // case "1" :
-                            // 	oBindingParams.filters.push(new Filter("Supplier", "EQ", "OTHERS"));
-                            // 	break;
+                            case "0" :
+                            	oBindingParams.filters.push(new Filter("Supplier", "EQ", "SAP"));
+                            	break;
+                            case "1" :
+                            	oBindingParams.filters.push(new Filter("Supplier", "EQ", "OTHERS"));
+                            	break;
                             default:
                                 break;
                         }

@@ -248,20 +248,6 @@
                     </Record>
                 </Annotation>
             </Annotations>
-            <Annotations Target="ZHMHB_I_SOH_CDS.SEPMRA_I_ProductReviewType/ID">
-                <Annotation Term="UI.Hidden"/>
-            </Annotations>
-            <Annotations Target="ZHMHB_I_SOH_CDS.SEPMRA_I_ProductReviewType/Product">
-                <Annotation Term="Common.SemanticObject" String="EPMProduct"/>
-                <Annotation Term="Common.SemanticObjectMapping">
-                    <Collection>
-                        <Record>
-                            <PropertyValue Property="LocalProperty" PropertyPath="Product"/>
-                            <PropertyValue Property="SemanticObjectProperty" String="Product"/>
-                        </Record>
-                    </Collection>
-                </Annotation>
-            </Annotations>
             <Annotations Target="ZHMHB_I_SOH_CDS.SEPMRA_I_Product_EType/ProductPictureURL">
                 <Annotation Term="UI.IsImageURL"/>
             </Annotations>
